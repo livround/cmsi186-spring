@@ -1,6 +1,6 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  File name     :  CalendarStuff.java
- *  Purpose       :  Echos the arguments from the command line one at a time on individual lines
+ *  Purpose       :  Uses a set of methods to analyze inputted calendar dates.
  *  Author        :  Olivia Round
  *  Date          :  2018-01-16
  *  Description   :  This file provides the supporting methods for the CountTheDays program which will
@@ -15,9 +15,10 @@
  *           -----  ----------  ------------  -----------------------------------------------------------
  *  @version 1.0.0  2018-01-18  Olivia Round  Initial writing 
  */
+
 public class CalendarStuff {
 
-  /**
+    /**
    * A listing of the days of the week, assigning numbers; Note that the week arbitrarily starts on Sunday
    */
    private static final int SUNDAY       = 0;
@@ -77,7 +78,7 @@ public class CalendarStuff {
    * notes: remember that the month variable is used as an indix, and so must
    *         be decremented to make the appropriate index value
    */
-   public static long daysInMonth( int month, long year ) {
+   public static long daysInMonth( long month, long year ) {
 
       if ( month == 2 ) {
          if (isLeapYear (year)) {
@@ -85,7 +86,7 @@ public class CalendarStuff {
          } 
          return 28;
       }
-      return days[month]; 
+      return days[ (int)month]; 
    }
 
   /**
@@ -122,25 +123,43 @@ public class CalendarStuff {
    public static int compareDate( long month1, long day1, long year1, long month2, long day2, long year2 ) {
       if ( year1 == year2 && day1 == day2 && month1 == month2 ) {
          return 0;
+      }
+      if (year1 > year2) {
+         return 1;
+      } else if (year1 < year2) {
+         return -1;
       } else {
-         if ( year1 > year2 ) {
-            return +1;
-         } else if ( year1 < year2 ) {
+         if (month1 > month2) {
+            return 1;
+         } else if (month1 < month2) {
             return -1;
          } else {
-            if ( month1 < month2 ) {
+            if (day1 > day2) {
+               return 1;
+            } else if (day1 < day2) {
                return -1;
-            } else if ( month1 > month2 ) {
-               return +1;
             } else {
-               if ( day1 < day2 ) {
-                  return +1;
-               } else {
-                  return -1;
-               }
+               return 0;
             }
          }
       }
+         // if ( year1 > year2 ) {
+         //    return +1;
+         // } else if ( year1 < year2 ) {
+         //    return -1;
+         // } else {
+         //    if ( month1 < month2 ) {
+         //       return -1;
+         //    } else if ( month1 > month2 ) {
+         //       return +1;
+         //    } else {
+         //       if ( day1 < day2 ) {
+         //          return +1;
+         //       } else {
+         //          return -1;
+         //       }
+         //    }
+         // }
    }
 
   /**
@@ -163,7 +182,7 @@ public class CalendarStuff {
       {
          return false;
       }
-      return true;
+      // return true;
 
    	if ( month >= 1 && month <= 12 ) {    
            if ( day >= 1 && day <= days[month]) {
@@ -171,9 +190,8 @@ public class CalendarStuff {
                   return true;
                } 
            }               
-   	} else {
-         return false;
-      }
+   	}
+      return false;
    }
 
   /**
@@ -182,44 +200,31 @@ public class CalendarStuff {
    * @return         String containing the string value of the month (no spaces)
    */
    public static String toMonthString( int month ) {
-      switch( month ) {
+      switch( month - 1) {
          case 1: 
-            System.out.println("JANUARY");  
-            break;
+            return "January"; 
          case 2: 
-            System.out.println("FEBRUARY");
-            break;
+            return "February";
          case 3: 
-            System.out.println("MARCH");
-            break;
+            return "March";
          case 4: 
-            System.out.println("APRIL");
-            break;
+            return "April";
          case 5: 
-            System.out.println("MAY");
-            break;
+            return "May";
          case 6: 
-            System.out.println("JUNE");
-            break;
+            return "June";
          case 7: 
-            System.out.println("JULY");
-            break;
+            return "July";
          case 8: 
-            System.out.println("AUGUST");
-            break;
+            return "August";
          case 9: 
-            System.out.println("SEPTEMBER");
-            break;
+            return "September";
          case 10: 
-            System.out.println("OCTOBER");
-            break;
+            return "October";
          case 11: 
-            System.out.println("NOVEMBER");
-            break;
+            return "November";
          case 12: 
-            System.out.println("DECEMBER");
-            break;
-
+            return "December";
          default: throw new IllegalArgumentException( "Illegal month value given to 'toMonthString()'." );
       }
    }
@@ -230,28 +235,21 @@ public class CalendarStuff {
    * @return       String containing the string value of the day (no spaces)
    */
    public static String toDayOfWeekString( int day ) {
-      switch( day - 1 ) { 
+      switch( day ) { 
           case 1: 
-            System.out.println("SUNDAY");  
-            break;
+            return "Sunday";
          case 2: 
-            System.out.println("MONDAY");
-            break;
+            return "Monday";
          case 3: 
-            System.out.println("TUESDAY");
-            break;
+            return "Tuesday";
          case 4: 
-            System.out.println("WEDNESDAY");
-            break;
+            return "Wednesday";
          case 5: 
-            System.out.println("THURSDAY");
-            break;
+            return "Thursday";
          case 6: 
-            System.out.println("FRIDAY");
-            break;
+            return "Friday";
          case 7: 
-            System.out.println("SATURDAY");
-            break;
+            return "Saturday";
          default       : throw new IllegalArgumentException( "Illegal day value given to 'toDayOfWeekString()'." );
       }
 
@@ -268,6 +266,7 @@ public class CalendarStuff {
    * @return          long   count of total number of days
    */
    public static long daysBetween( long month1, long day1, long year1, long month2, long day2, long year2 ) {
+      
       int dayCount = 0;
       int numberOfLeaps = 0;
       int firstYear = 0;
@@ -278,44 +277,74 @@ public class CalendarStuff {
       int secondDay = 0;
 
       if ( 0 == compareDate( month1, day1, year1, month2, day2, year2 ) ) {
-         dayCount = 0;
+         return 0;
 
       } else if ( -1 == compareDate( month1, day1, year1, month2, day2, year2 ) ) { //first date is earlier than second date
-         secondYear = (int)year1;
-         secondMonth = (int)month1;
-         secondDay = (int)day1;
-         firstYear = (int)year2;
-         firstMonth = (int)month2;
-         firstDay = (int)day2;
-      } else if ( 1 == compareDate( month1, day1, year1, month2, day2, year2 ) ) { //second date is earlier than first date
-         firstYear = (int)year1;
-         firstMonth = (int)month1;
-         firstDay = (int)day1;
          secondYear = (int)year2;
          secondMonth = (int)month2;
          secondDay = (int)day2;
+         firstYear = (int)year1;
+         firstMonth = (int)month1;
+         firstDay = (int)day1;
 
+      } else if ( 1 == compareDate( month1, day1, year1, month2, day2, year2 ) ) { //second date is earlier than first date
+         firstYear = (int)year2;
+         firstMonth = (int)month2;
+         firstDay = (int)day2;
+         secondYear = (int)year1;
+         secondMonth = (int)month1;
+         secondDay = (int)day1;
       }
 
-   for ( int i = firstYear; i < secondYear; i++) {
+      for (int i = firstYear; i <= secondYear; i++) {
          if (isLeapYear(i) == true) {
-         numberOfLeaps++;
+            numberOfLeaps++;
          }
       }
 
-      int differenceYear = (Math.abs(secondYear - firstYear));
+      int differenceYear = 0;
+
+      if (compareDate(firstMonth, firstDay, secondYear, secondMonth, secondDay, secondYear) == -1) {
+         differenceYear = secondYear - firstYear;
+      } else {
+         differenceYear = secondYear - firstYear - 1;
+      }
+
       dayCount += (differenceYear * 365) + numberOfLeaps;
 
-      if ( month1 == month2 && day1 == day2 && year1 == year2 ) {
-         dayCount = 0;
-      } return dayCount;
-
-      if ( month1 == month2 && day1 == day2 && year1 < year2 ) {
-         dayCount += ( year2 - year1 ) * 365;
-      } else if ( month1 == month2 && day1 < day2 && year1 < year2 ) {
-         dayCount += ( year2 - year1 ) * 365 + ( day2 - day1 );
-      } else if ( month1 == month2 && day1 < day2 && year1 == year2 ) {
-         dayCount += ( day2 - day1 );
-      } else if ( month1 < month2 && day1 <= day2 && year1 < year2 ) { //1.3.2005 and 2.3.2006
-         dayCount += (( year2 - year1 ) * 365); //ended here
+      if (compareDate(firstMonth, firstDay, secondYear, secondMonth, secondDay, secondYear) == -1) {
+         for (int i = firstMonth; i < secondMonth - 1; i++) {
+            dayCount += daysInMonth(i, secondYear);
+         }
+         // if (isLeapYear(firstYear)) {
+         //    dayCount += 1;
+         // }
+      } else {
+         for (int i = firstMonth; i < 12; i++) {
+            dayCount += daysInMonth(i, secondYear);
+         }
+         for (int i = 1; i < secondMonth; i++) {
+            dayCount += daysInMonth(i, secondYear);
+         }
+         // if (isLeapYear(secondYear)) {
+         //    dayCount -= 1;
+         // }
       }
+
+      if (compareDate(secondMonth, firstDay, secondYear, secondMonth, secondDay, secondYear) == -1) {
+         for (int i = firstDay; i < secondDay; i++) {
+            dayCount += 1;
+         }
+      } else {
+         // for (int i = firstDay; i < daysInMonth(firstMonth, firstYear); i++) {
+         //    // System.out.println("6.4");
+         //    dayCount += 1;
+         // }
+         dayCount += daysInMonth(firstMonth, firstYear) - firstDay;
+         // System.out.println("6.5");
+         dayCount += secondDay;
+      }
+   
+      return dayCount;
+   }
+}
