@@ -119,7 +119,7 @@ public class StringStuff {
       String resultString = evensOnly(inputString);
       String outputString = "";
 
-      if (inputString == "") {
+      if (resultString.length() == 0) {
          return "";
       } 
 
@@ -148,8 +148,8 @@ public class StringStuff {
       String resultString = oddsOnly(inputString);
       String outputString = new String();
 
-       if (inputString == "") {
-         return inputString;
+      if (resultString.length() == 0) {
+         return "";
       } 
 
       outputString += resultString.charAt(0);
