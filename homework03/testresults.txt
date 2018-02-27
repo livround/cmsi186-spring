@@ -1,0 +1,632 @@
+Hello world from the Die class...
+1
+[1]
+6
+[6]
+
+NOTE: throws an uncaught IllegalArgumentException.  You need a try-catch block around the
+      last test in the main() method in the Die.java file.
+======
+
+[[1][3][2][1]]
+true
+false
+1
+[[3][6][4][6][5][7][8][5][6][1][7][5][8][3][7][1][4]]
+true
+false
+7
+86
+1
+
+NOTE: throws an uncaught IllegalArgumentException.  You need a try-catch block around the
+      last test in the main() method in the DiceSet.java file.
+======
+
+TESTING THE DIE CLASS: TEST CONSTRUCTOR FOR INVALID NUMBERS OF SIDES:
+   Too few sides requested to constructor....
+   Too few sides requested to constructor....
+   Too few sides requested to constructor....
+   Too few sides requested to constructor....
+TESTING THE DIE CLASS: TESTS ON 4-SIDED DIE:
+   roll() test for 4 sided die:
+   You rolled a 1
+   You rolled a 2
+   You rolled a 4
+   You rolled a 3
+   You rolled a 1
+   Current value is: [1]
+TESTING THE DIE CLASS: TESTS ON 5-SIDED DIE:
+   roll() test for 5 sided die:
+   You rolled a 3
+   You rolled a 2
+   You rolled a 4
+   You rolled a 2
+   You rolled a 5
+   Current value is: [5]
+TESTING THE DIE CLASS: TESTS ON 6-SIDED DIE:
+   roll() test for 6 sided die:
+   You rolled a 2
+   You rolled a 5
+   You rolled a 1
+   You rolled a 2
+   You rolled a 2
+   Current value is: [2]
+TESTING THE DIE CLASS: TESTS ON 7-SIDED DIE:
+   roll() test for 7 sided die:
+   You rolled a 6
+   You rolled a 1
+   You rolled a 4
+   You rolled a 1
+   You rolled a 1
+   Current value is: [1]
+TESTING THE DIE CLASS: TESTS ON 8-SIDED DIE:
+   roll() test for 8 sided die:
+   You rolled a 2
+   You rolled a 7
+   You rolled a 1
+   You rolled a 1
+   You rolled a 8
+   Current value is: [8]
+TESTING THE DIE CLASS: TESTS ON 11-SIDED DIE USING NEW SIDE COUNT:
+   Rolling with new side count --
+      You rolled a 5
+      You rolled a 11
+      You rolled a 2
+      You rolled a 1
+      You rolled a 2
+TESTING THE DIE CLASS: TESTS ON 17-SIDED DIE USING NEW SIDE COUNT:
+   Rolling with new side count --
+      You rolled a 5
+      current value is: 5
+TESTING THE DIE CLASS: TESTS ON 111-SIDED DIE USING NEW SIDE COUNT:
+   Rolling with new side count --
+      You rolled a 29
+      current value is: 29
+......End of Die Class Testing.....
+
+
+TESTING THE DICESET CLASS: TEST CONSTRUCTOR FOR 3 SIX-SIDED DICE:
+  DiceSet: 3 dice, six sided - ds36:
+      initialized ds36 contents             : [[0][0][0]]
+      after collective roll ds36 contents   : [[6][1][6]]
+      after individual roll(2) ds36 contents: [[6][1][2]]
+      sum of dice values is: 9
+   Re-rolling all dice
+      after collective roll ds36 contents   : [[4][5][1]]
+      after individual roll(2) ds36 contents: [[4][5][3]]
+      sum of dice values is                 : 12
+   Test of getIndividual():
+      value of die at index 0: 4
+      value of die at index 1: 5
+      value of die at index 2: 3
+TESTING THE DICESET CLASS: TEST CONSTRUCTOR FOR 6 NINE-SIDED DICE:
+   DiceSet: 6 dice, nine sided - ds69:
+      initialized ds36 contents             : [[0][0][0][0][0][0]]
+      after collective roll ds69 contents   : [[6][6][1][8][7][6]]
+      after individual roll(2) ds69 contents: [[6][6][8][8][7][6]]
+      sum of dice values is                 : 41
+   Re-rolling all dice
+      after collective roll ds69 contents   : [[4][6][4][5][1][9]]
+      after individual roll(3) ds69 contents: [[4][6][4][3][1][9]]
+      sum of dice values is                 : 27
+   Test of getIndividual():
+      value of die at index 0: 4
+      value of die at index 1: 6
+      value of die at index 2: 4
+      value of die at index 3: 3
+      value of die at index 4: 1
+      value of die at index 5: 9
+TESTING THE DICESET CLASS: TEST CONSTRUCTOR FOR 9 SEVENTEEN-SIDED DICE:
+   DiceSet: 9 dice, 17 sided - ds917:
+      initialized ds36 contents              : [[0][0][0][0][0][0][0][0][0]]
+      after collective roll ds917 contents   : [[17][14][9][4][13][3][3][8][15]]
+      after individual roll(6) ds917 contents: [[17][14][9][4][13][3][14][8][15]]
+      sum of dice values is                  : 97
+   Re-rolling all dice
+      after collective roll ds917 contents   : [[13][10][12][6][10][3][13][10][7]]
+      after individual roll(8) ds69 contents : [[13][10][12][6][10][3][13][10][2]]
+      sum of dice values is                  : 79
+   Test of getIndividual():
+      value of die at index 0: 13
+      value of die at index 1: 10
+      value of die at index 2: 12
+      value of die at index 3: 6
+      value of die at index 4: 10
+      value of die at index 5: 3
+      value of die at index 6: 13
+      value of die at index 7: 10
+      value of die at index 8: 2
+TESTING THE DICESET CLASS: TEST 'isIdentical()' FOR 9 SEVENTEEN-SIDED DICE:
+   Test of isIndentical():
+      Test of ds917 against ds69   : false
+      Test of ds917 against itself : true
+TESTING THE DICESET CLASS: TEST 'isIdentical()' FOR NEW SET OF 9 SEVENTEEN-SIDED DICE:
+   DiceSet ds917 contents       : [[11][17][11][3][14][7][6][8][12]]
+      New DiceSet ds2_917 contents : [[7][12][14][16][15][6][8][3][8]]
+      Test of ds917 against ds2_917: true
+......End of DiceSet Class Testing.....
+
+HighRoll 5 6 test
+=================
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[1][5][1][6][4]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[5][2][5][5][4]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[6][6][1][3][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][6][1][3][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][6][1][3][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][6][1][3][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][6][1][3][6]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][6][1][3][6]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][4][1][3][6]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The sum of your die is 20
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your score 20 is saved.
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your high score is 20
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[4][1][3][1][5]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[6][3][4][2][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][3][4][2][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][3][4][2][6]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][3][4][2][6]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][3][4][3][6]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The sum of your die is 22
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your score 22 is saved.
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your high score is 22
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+HighRoll 11 17 test
+===================
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[16][2][9][1][3][17][6][14][13][4][3]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[15][11][8][7][3][13][12][17][16][10][6]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[13][5][16][7][6][9][13][8][15][9][4]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[13][5][16][7][6][9][13][8][15][9][4]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[13][5][16][7][6][9][13][8][15][9][11]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[13][5][16][7][6][9][13][8][15][9][11]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[13][10][16][7][6][9][13][8][15][9][11]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[13][10][16][7][6][9][13][8][15][9][11]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[13][10][16][7][6][9][8][8][15][9][11]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The sum of your die is 112
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your score 112 is saved.
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your high score is 112
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[10][4][9][7][16][8][15][14][7][17][5]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[6][2][13][1][1][13][16][5][1][17][10]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][2][13][1][1][13][16][5][1][17][10]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][2][13][1][9][13][16][5][1][17][10]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[6][2][13][1][9][13][16][5][1][17][10]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[6][2][17][1][9][13][16][5][1][17][10]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The sum of your die is 97
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your score 97 is saved.
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your high score is 97
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>
+
+HighRoll 29 4 test
+==================
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[1][3][1][3][3][4][3][4][2][2][2][3][4][2][1][1][1][3][3][3][3][2][2][4][4][1][3][1][4]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[3][4][1][4][3][4][1][3][4][4][2][2][3][4][4][3][3][1][4][4][1][3][1][3][1][1][2][1][2]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[2][1][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[2][1][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[2][1][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[2][1][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[2][4][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[2][4][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[2][4][2][3][3][1][2][3][4][2][1][3][1][4][3][3][4][4][1][4][2][4][4][4][4][1][1][2][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The sum of your die is 77
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your score 77 is saved.
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your high score is 77
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[1][1][4][1][1][2][1][2][4][3][1][2][3][3][3][2][4][1][2][4][1][4][1][2][4][2][2][3][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your die have been rolled! Here is what you rolled [[4][1][1][1][1][1][1][1][1][3][3][1][3][1][3][3][4][3][2][4][4][2][4][4][1][4][1][3][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[4][1][1][1][1][1][1][1][1][3][3][1][3][1][3][3][4][3][2][4][4][2][4][4][1][4][1][3][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[4][1][1][1][1][1][1][1][1][3][3][1][3][1][3][3][4][3][4][4][4][2][4][4][1][4][1][3][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your dice set is [[4][1][1][1][1][1][1][1][1][3][3][1][3][1][3][3][4][3][4][4][4][2][4][4][1][4][1][3][1]]Choose which dice you want to roll again. Please enter the number of the corresponding dice.
+Your dice set is: [[4][1][1][1][1][1][1][1][1][3][3][1][3][1][3][3][4][3][4][4][4][2][4][4][1][4][1][3][1]]
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>The sum of your die is 68
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your score 68 is saved.
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>Your high score is 68
+The following menu contains your options for the game. Please enter the number(s) corresponding to your action of choice.
+
+ Option 1: Roll all the dice
+Option 2: Roll a single die
+Option 3: Calculate the sum of the die in this set
+Option 4: Save this score as high score
+Option 5: Display the high score
+Option 6: Enter 'Q' to quit the program
+>>
+
+NOTE: all input files were modified to NOT test re-rolling single element 1 due to
+   ArrayOutOfBoundsException being thrown.  CAN'T RE-ROLL JUST DIE NUMBER ONE!!
