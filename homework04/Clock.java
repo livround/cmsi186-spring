@@ -120,11 +120,12 @@ public class Clock {
     //what if the angle is bigger
     double handAngle = Math.abs(getHourHandAngle() - getMinuteHandAngle());
 
-    if (handAngle > 180) {
+    /**if (handAngle > 180) {
       return 360 - handAngle;
     } else {
       return handAngle;
-    }
+    }*/
+    return handAngle;
    }
 
   /**
