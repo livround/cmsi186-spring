@@ -5,7 +5,7 @@
  *  @author       :  Olivia Round
  *  Date written  :  2018-02-22
  *  Description   :  This class provides a bunch of methods which may be useful for the ClockSolver class
- *                   for Homework 4, part 1.  Includes the following:
+ *                   for Homework 4, part 1.  Includes the following: handleInitialArgument
   *
  *  Notes         :  None right now.  I'll add some as they occur.
  *  Warnings      :  None
