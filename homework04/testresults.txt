@@ -1,0 +1,122 @@
+.
+.
+successful compilation
+.
+.
+
+CLOCK CLASS TESTER PROGRAM
+--------------------------
+
+  Creating a new clock:
+ Total seconds: 60.0
+ Hour hand: 0.5004
+ Minute hand: 6.0
+ Hand angle: 5.4996
+00 : 01 : .000
+ String:
+
+   Hello world, from the ClockSolver program!!
+
+
+   Sorry you must enter at least one argument
+   Usage: java ClockSolver <angle> [timeSlice]
+   Please try again...........
+
+throws exception with java ClockSolver -1.0
+   Exception in thread "main" java.lang.IllegalArgumentException: There must be at least 0.0 degrees.
+        at Clock.<init>(Clock.java:67)
+        at ClockSolver.handleInitialArguments(ClockSolver.java:60)
+        at ClockSolver.main(ClockSolver.java:81)
+
+throws exception with java ClockSolver 0.0 -1.0
+   Exception in thread "main" java.lang.IllegalArgumentException: timeSlice is out of range.
+        at Clock.<init>(Clock.java:51)
+        at ClockSolver.main(ClockSolver.java:82)
+
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+
+goes into endless loop with no output with java ClockSolver 90.0 0.0
+
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+
+throws exception with java ClockSolver 90.0 1801.0
+   Exception in thread "main" java.lang.IllegalArgumentException: timeSlice is out of range.
+        at Clock.<init>(Clock.java:51)
+        at ClockSolver.main(ClockSolver.java:82)
+
+throws exception with java ClockSolver abc
+   Exception in thread "main" java.lang.NumberFormatException: For input string: "abc"
+        at sun.misc.FloatingDecimal.readJavaFormatString(Unknown Source)
+        at sun.misc.FloatingDecimal.parseDouble(Unknown Source)
+        at java.lang.Double.parseDouble(Unknown Source)
+        at Clock.<init>(Clock.java:64)
+        at ClockSolver.handleInitialArguments(ClockSolver.java:60)
+        at ClockSolver.main(ClockSolver.java:81)
+
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+00 : 05 : 27.000
+00 : 05 : 28.000
+01 : 00 : 1.000
+01 : 10 : 54.000
+01 : 10 : 55.000
+
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+00 : 13 : 40.000
+00 : 13 : 41.000
+01 : 19 : 7.000
+01 : 19 : 8.000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+00 : 16 : 22.000
+01 : 21 : 50.000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
+00 : 32 : 43.000
+01 : 38 : 11.000
+
+   Hello world, from the ClockSolver program!!
+
+
+00 : 00 : .000
