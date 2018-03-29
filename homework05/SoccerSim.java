@@ -32,10 +32,156 @@
  *  @version 1.0.0  2018-03-15  Olivia Round  Initial writing and release
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-public class SoccerSim {
 
-private static int location;
 
+public class SoccerSim{
+
+	private static Ball[] balls = null;
+
+	private static int ballNumber = 0;
+
+	private Timer stopWatch = null;
+
+	private static int j = 0;
+
+
+
+	private static final double CENTERFIELD_X = 0;
+
+	private static final double CENTERFIELD_Y = 0;
+
+	private static final double OUTOFBOUNDS_X_POS = 50;
+
+	private static final double OUTOFBOUNDS_X_NEG = -50;
+
+	private static final double OUTOFBOUNDS_Y_POS = 70;
+
+	private static final double OUTOFBOUNDS_Y_NEG = -70;
+
+	private static final double POLE_X = 10;
+
+	private static final double POLE_Y = -10;
+
+	
+
+	private static final double DEFAULT_TIMESLICE = 1;
+	private int ballCount = 0;
+	private Ball[] ballArray = null;
+	private Timer soccerTimer = null;
+
+  public SoccerSim90 {
+  	soccerTimer = new Timer(90, 60);
+  }
+
+
+
+  public boolean checkCollision() {
+
+    for (int i = 0; i < ballArray.length - 1; i++) {
+
+      if ( (ballArray[i].UpdateXPosition() - POLE_X <= RADIUS ) && ( ballArray[i].UpdateYPosition() - POLE_Y <= RADIUS ) ) {
+
+        System.out.println("the ball hit the pole!");
+
+        return true;
+
+      }
+
+      for (int j = i + 1; j < ballArray.length; j++) {
+
+        double collisionPthag1 = Math.sqrt( (ballArray[i].UpdateXPosition() - ballArray[j]) * (ballArray[i].UpdateXPosition() - ballArray[j]));
+
+        double collisionPthag2 = Math.sqrt( (ballArray[i].UpdateYPosition() - ballArray[j]) * (ballArray[i].UpdateYPosition() - ballArray[j]));
+
+        if ((collisionPthag1 + collisionPthag2) * INCHES_PER_FOOT <=1) {
+
+          return true;
+
+        }       
+
+       }
+
+     }
+
+   }
+
+
+   public boolean outOfBounds() {
+
+    for (int i = 0; i < ballArray.length - 1; i++) {
+
+      if ( ( ballArray[i].UpdateXPosition() > OUTOFBOUNDS_X_POS) || (ballArray[i].UpdateXPosition() < OUTOFBOUNDS_X_NEG) ) {
+
+        System.out.println("ob from the y direction");
+
+        return true;
+
+      } else if ( (ballArray[i].UpdateYPosition() > OUTOFBOUNDS_Y_POS) || (ballArray[i].UpdateYPosition() < OUTOFBOUNDS_Y_NEG) ) {
+
+        System.out.println("ob from the x direction");
+
+        return true;
+
+      } else {
+
+        return false;
+
+      }
+
+    }
+
+   }
+
+
+	public static void main( String args[] ) {
+
+	  //SoccerSim ballArray = new SoccerSim();
+
+	  System.out.println( "\n   Starting the SoccerSim game!\n\n" );
+
+	  
+
+	  Timer a = new Timer(60);
+
+	  Ball b1 = new Ball(0, 0, 0, 0);
+
+	  Ball b2 = new Ball(1, 1, 0, 0);
+
+	  Ball pole = new Ball(10, 10, 0, 0);
+
+	  
+
+	  if( 0 == args.length ) {
+
+         System.out.println( "   Sorry you must enter at least one argument\n" +
+
+                             "   Please try again..........." );
+
+         System.exit( 1 );
+
+      } 
+
+      
+
+	  if ((args.length % 4) == 0) {
+
+	  	ballNumber = args.length/4;
+
+	  	System.out.println("you've created " + ballNumber + " balls");
+
+	  }
+
+
+
+	  if ((args.length % 4) == 1) {
+
+	  	double timeSlice = Double.parseDouble(args[4]);
+
+		ballCount = ((args.length - 1)/4);
+
+	  }
+
+	  
 /** 
 * Ball[] balls = null;
 * balls = new Ball [3];
@@ -44,3 +190,39 @@ private static int location;
 *         ""			""				  (args[i + 1]));
 * 		  ""			""				  (args[i + 2]));
 */
+
+
+	  for (int i = 0; i < args.length; i+=4) { 
+
+		double xPosition = Double.parseDouble(args[i + 0]);
+
+		System.out.println("x posiiton: " + xPosition);
+
+	  	double yPosition = Double.parseDouble(args[i + 1]);
+
+	  	double xSpeed = Double.parseDouble(args[i + 2]);
+
+	  	double ySpeed = Double.parseDouble(args[i + 3]);
+
+		//Ball ball = new Ball(xPosition, yPosition, xSpeed, ySpeed);
+
+
+
+		j++; 
+
+		ballArray[j] = new Ball(xPosition, yPosition, xSpeed, ySpeed);
+
+		//balls[j] = new Ball(Double.parseDouble(args[i + 0]), Double.parseDouble(args[i + 1]), Double.parseDouble(args[i + 2]), Double.parseDouble(args[i + 3]));//j keeps count of how many balls there are
+
+		//Ball ball = new Ball [j];
+
+		//System.out.println(j);
+
+	  }
+
+	  System.out.println("balll array: " + ballArray);
+
+	  
+
+	}
+}
