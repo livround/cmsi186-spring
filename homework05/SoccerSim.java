@@ -33,7 +33,6 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
-
 public class SoccerSim{
 
 	private static Ball[] balls = null;
@@ -65,12 +64,17 @@ public class SoccerSim{
 	
 
 	private static final double DEFAULT_TIMESLICE = 1;
+	
 	private int ballCount = 0;
+	
 	private Ball[] ballArray = null;
+	
 	private Timer soccerTimer = null;
 
-  public SoccerSim90 {
-  	soccerTimer = new Timer(90, 60);
+  public class SoccerSim9() {
+
+  	Timer soccerTimer = new Timer(90, 60);
+
   }
 
 
@@ -226,3 +230,4 @@ public class SoccerSim{
 
 	}
 }
+
