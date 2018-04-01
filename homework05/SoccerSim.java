@@ -93,11 +93,11 @@ public class SoccerSim{
 
       for (int j = i + 1; j < ballArray.length; j++) {
 
-        double collisionPthag1 = Math.sqrt( (ballArray[i].UpdateXPosition() - ballArray[j]) * (ballArray[i].UpdateXPosition() - ballArray[j]));
+        double collision1 = Math.sqrt( (ballArray[i].UpdateXPosition() - ballArray[j]) * (ballArray[i].UpdateXPosition() - ballArray[j]));
 
-        double collisionPthag2 = Math.sqrt( (ballArray[i].UpdateYPosition() - ballArray[j]) * (ballArray[i].UpdateYPosition() - ballArray[j]));
+        double collision2 = Math.sqrt( (ballArray[i].UpdateYPosition() - ballArray[j]) * (ballArray[i].UpdateYPosition() - ballArray[j]));
 
-        if ((collisionPthag1 + collisionPthag2) * INCHES_PER_FOOT <=1) {
+        if ((collision1 + collision2) * 12 <=1) {
 
           return true;
 
