@@ -1,4 +1,4 @@
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  *  File name     :  SoccerSim.java
 
@@ -62,9 +62,12 @@ public class SoccerSim {
 
 	private static final double POLE_Y = -10;
 
+
+
+	private int ballCount = 0;
 	
 
-	private static final double DEFAULT_TIMESLICE = 1;
+	private static final double DEFAULT_TIMESLICE = 1.0;
 	
 	private Ball[] ballArray = null;
 	
@@ -72,12 +75,69 @@ public class SoccerSim {
 
 
 
-  public class SoccerSim9 {
-
-  	Timer soccerTimer = new Timer(90, 60);
+  public SoccerSim() {
 
   }
 
+  public void validateArguments(String args[] ) {
+
+	  if( 0 == args.length ) {
+
+         System.out.println( "   Sorry you must enter at least one argument\n" +
+
+                             "   Please try again." );
+
+         System.exit( 0 );
+
+      } else {
+
+		  if ((args.length % 4) == 1) {
+
+		  	double timeSlice = Double.parseDouble(args[4]);
+
+			ballNumber = ((args.length - 1) / 4);
+
+		  }
+  	  }
+  }
+
+  public void setUpSim(String args[]) {
+
+  	ballCount = (int)(Math.floor(args.length / 4));
+
+
+  	if( args.length != (ballCount * 4)) {
+
+  		throw new IllegalArgumentException();
+
+  	} else if((args.length - 1) != (ballCount *4)) {
+
+  		throw new IllegalArgumentException();
+
+  	}
+
+  	this.ballArray = new Ball[this.ballCount];
+	
+	for (int i = 0; i < this.ballArray.length; i++) {
+
+		for (int j = 0; j < this.ballArray.length; j++ ) {
+
+			this.ballArray[j] = new Ball (Double.parseDouble(args[i + 0]));
+			this.ballArray[j] = new Ball (Double.parseDouble(args[i + 1]));
+			this.ballArray[j] = new Ball (Double.parseDouble(args[i + 2]));
+
+		}
+	}
+  }
+
+  public void updateSim() {
+  	
+  	for (int i = 0; i < ballArray.length; i++) {
+  		
+  		ballArray[i].moveBall();
+  	}
+
+  }
 
 
   public boolean checkCollision() {
@@ -97,9 +157,7 @@ public class SoccerSim {
   }
 
 
-
-
-   public boolean outOfBounds() {
+  public boolean outOfBounds() {
 
     for (int i = 0; i < ballArray.length - 1; i++) {
 
@@ -120,17 +178,24 @@ public class SoccerSim {
         return false;
 
       }
-
-      return true;
-
     }
 
    }
 
+  public boolean ballMoving() {
+  	  
+   	  for (int i = 0; i < ballArray.length; i++) {
 
-	public static void main( String args[] ) {
+   	  	if( ballArray[i].stillMoving()) {
+   	  		return true;
+   	  	}
 
-	  //SoccerSim ballArray = new SoccerSim();
+   	  }
+   	  return false;
+   }
+
+
+  public static void main( String args[] ) {
 
 	  System.out.println( "\n   Starting the SoccerSim game!\n\n" );
 
@@ -140,65 +205,8 @@ public class SoccerSim {
 	  Ball b2 = new Ball(1, 1, 0, 0);
 
 	  Ball pole = new Ball(10, 10, 0, 0);
-
 	  
 
-	  if( 0 == args.length ) {
-
-         System.out.println( "   Sorry you must enter at least one argument\n" +
-
-                             "   Please try again." );
-
-         System.exit( 1 );
-
-      } 
-
-      
-
-	  if ((args.length % 4) == 0) {
-
-	  	ballNumber = args.length/4;
-
-	  	System.out.println("You've created " + ballNumber + " balls!");
-
-	  }
-
-
-
-	  if ((args.length % 4) == 1) {
-
-	  	double timeSlice = Double.parseDouble(args[4]);
-
-		ballNumber = ((args.length - 1) / 4);
-
-	  }
-
-	  
-/** 
-* Ball[] balls = null;
-* balls = new Ball [3];
-* for (---);
-* 	ball[j] = new Ball (Double.parseDouble(args[i + 0]));
-*         ""			""				  (args[i + 1]));
-* 		  ""			""				  (args[i + 2]));
-*/
-
-
-	  for (int i = 0; i < args.length; i+=4) { 
-
-		double xPosition = Double.parseDouble(args[i + 0]);
-
-		System.out.println("x posiiton: " + xPosition);
-
-	  	double yPosition = Double.parseDouble(args[i + 1]);
-
-	  	double xSpeed = Double.parseDouble(args[i + 2]);
-
-	  	double ySpeed = Double.parseDouble(args[i + 3]);
-
-	  }
-	  
-	}
-  
+  }
 }
 
