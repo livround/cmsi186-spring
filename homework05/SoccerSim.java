@@ -85,7 +85,7 @@ public class SoccerSim {
 
       if ( (ballArray[i].getXPosition() - POLE_X <=  ) && ( ballArray[i].getYPosition() - POLE_Y <=  ) ) {
 
-        System.out.println("the ball hit the pole!");
+        System.out.println("The ball has hit the pole!");
 
         return true;
 
@@ -116,13 +116,13 @@ public class SoccerSim {
 
       if ( ( ballArray[i].UgetXPosition() > OUTOFBOUNDS_X_POS) || (ballArray[i].getXPosition() < OUTOFBOUNDS_X_NEG) ) {
 
-        System.out.println("ob from the y direction");
+        System.out.println("Out of bounds!");
 
         return true;
 
       } else if ( (ballArray[i].getYPosition() > OUTOFBOUNDS_Y_POS) || (ballArray[i].getYPosition() < OUTOFBOUNDS_Y_NEG) ) {
 
-        System.out.println("ob from the x direction");
+        System.out.println("Out of bounds!");
 
         return true;
 
