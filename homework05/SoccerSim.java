@@ -67,8 +67,7 @@ public class SoccerSim {
 	
 	private int ballCount = 0;
 	
-	private Ball[] ballArray = null;
-	
+	private Ball[] ballArray = null;	
 	private Timer soccerTimer = null;
 
   public class SoccerSim9 {
@@ -83,7 +82,7 @@ public class SoccerSim {
 
     for (int i = 0; i < ballArray.length - 1; i++) {
 
-      if ( (ballArray[i].getXPosition() - POLE_X <=  ) && ( ballArray[i].getYPosition() - POLE_Y <=  ) ) {
+      if ( (ballArray[i].getXPosition() - POLE_X <= (4.45/12) ) && ( ballArray[i].getYPosition() - POLE_Y <= (4.45/12) ) ) {
 
         System.out.println("The ball has hit the pole!");
 
