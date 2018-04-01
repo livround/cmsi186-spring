@@ -33,7 +33,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
-public class SoccerSim{
+public class SoccerSim {
 
 	private static Ball[] balls = null;
 
@@ -71,7 +71,7 @@ public class SoccerSim{
 	
 	private Timer soccerTimer = null;
 
-  public class SoccerSim9() {
+  public class SoccerSim9 {
 
   	Timer soccerTimer = new Timer(90, 60);
 
@@ -83,7 +83,7 @@ public class SoccerSim{
 
     for (int i = 0; i < ballArray.length - 1; i++) {
 
-      if ( (ballArray[i].UpdateXPosition() - POLE_X <= RADIUS ) && ( ballArray[i].UpdateYPosition() - POLE_Y <= RADIUS ) ) {
+      if ( (ballArray[i].getXPosition() - POLE_X <=  ) && ( ballArray[i].getYPosition() - POLE_Y <=  ) ) {
 
         System.out.println("the ball hit the pole!");
 
@@ -93,9 +93,9 @@ public class SoccerSim{
 
       for (int j = i + 1; j < ballArray.length; j++) {
 
-        double collision1 = Math.sqrt( (ballArray[i].UpdateXPosition() - ballArray[j]) * (ballArray[i].UpdateXPosition() - ballArray[j]));
+        double collision1 = Math.sqrt( (ballArray[i].getXPosition() - ballArray[j]) * (ballArray[i].getXPosition() - ballArray[j]));
 
-        double collision2 = Math.sqrt( (ballArray[i].UpdateYPosition() - ballArray[j]) * (ballArray[i].UpdateYPosition() - ballArray[j]));
+        double collision2 = Math.sqrt( (ballArray[i].getYPosition() - ballArray[j]) * (ballArray[i].getYPosition() - ballArray[j]));
 
         if ((collision1 + collision2) * 12 <=1) {
 
@@ -114,13 +114,13 @@ public class SoccerSim{
 
     for (int i = 0; i < ballArray.length - 1; i++) {
 
-      if ( ( ballArray[i].UpdateXPosition() > OUTOFBOUNDS_X_POS) || (ballArray[i].UpdateXPosition() < OUTOFBOUNDS_X_NEG) ) {
+      if ( ( ballArray[i].UgetXPosition() > OUTOFBOUNDS_X_POS) || (ballArray[i].getXPosition() < OUTOFBOUNDS_X_NEG) ) {
 
         System.out.println("ob from the y direction");
 
         return true;
 
-      } else if ( (ballArray[i].UpdateYPosition() > OUTOFBOUNDS_Y_POS) || (ballArray[i].UpdateYPosition() < OUTOFBOUNDS_Y_NEG) ) {
+      } else if ( (ballArray[i].getYPosition() > OUTOFBOUNDS_Y_POS) || (ballArray[i].getYPosition() < OUTOFBOUNDS_Y_NEG) ) {
 
         System.out.println("ob from the x direction");
 
