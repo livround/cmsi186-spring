@@ -36,8 +36,6 @@
 
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-
-
 public class Ball {
 
 
@@ -48,15 +46,17 @@ public class Ball {
 
   private int location;
 
-  private int xCoordinate = 0;
+  private double xCoordinate = 0;
 
-  private int yCoordinate = 0;
+  private double yCoordinate = 0;
 
-  private int xVelocity = 0;
+  private double xVelocity = 0;
 
-  private int yVelocity = 0;
+  private double yVelocity = 0;
 
-  private int ballSpeed = 0;
+  private double ballSpeed = 0;
+
+  private boolean inBounds = true;
 
 
 
@@ -64,7 +64,7 @@ public class Ball {
 
 
 
-	public Ball(int xCoordinate, int yCoordinate, int xVelocity, int yVelocity) {
+	public Ball(double xCoordinate, double yCoordinate, double xVelocity, double yVelocity) {
 
 		this.xCoordinate = xCoordinate;
 
@@ -92,7 +92,7 @@ public class Ball {
 
 	//ball doesn't care about time
 
-	public int getXVelocity () {
+	public double getXVelocity () {
 
 		return xVelocity;
 
@@ -107,7 +107,7 @@ public class Ball {
 		
 	}
 
-	public int getYVelocity () {
+	public double getYVelocity () {
 
 		return yVelocity;
 	}
@@ -128,7 +128,7 @@ public class Ball {
 
 
 
-	public int getXLocation () {
+	public double getXLocation () {
 
 	//(3,7)
 
@@ -146,11 +146,28 @@ public class Ball {
 	
 	}
 
-	public int getYLocation () {
+	public double getYLocation () {
 
 		return yCoordinate;
 	}
 
+	public boolean stillMoving() {
+
+		if ((xVelocity * 12) <= 1.0) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public void ballOutOfBounds( double width, double height) {
+		if ((Math.abs(getXLocation()) >= (width / 2.0)) ||
+			(Math.abs(getYLocation()) >= (height / 2.0))) {
+				inBounds = false;
+				xVelocity = 0.0;
+			}
+
+	}
 
 
 	public String toString() {
