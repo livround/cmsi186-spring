@@ -96,6 +96,10 @@ public class SoccerSim {
 
 	private static final double OUTOFBOUNDS_Y_NEG = -70;
 
+	private static final double DEFAULT_WIDTH = 100;
+
+	private static final double DEFAULT_HEIGHT = 140;
+
 	private static final double POLE_X = 10;
 
 	private static final double POLE_Y = -10;
@@ -165,7 +169,7 @@ public class SoccerSim {
 
   	for (int i=0; i < ballArray.length; i += 4) {
 
-  		balls[j] = new Ball (
+  		ballArray[j] = new Ball (
 
 			(Double.parseDouble(args[i + 0])),
 			(Double.parseDouble(args[i + 1])),
@@ -181,6 +185,8 @@ public class SoccerSim {
   	for (int i = 0; i < ballArray.length; i++) {
   		
   		ballArray[i].moveBall();
+  		ballArray[i].ballOutOfBounds( DEFAULT_HEIGHT, DEFAULT_WIDTH);
+  		
   	}
 
   }
@@ -212,6 +218,8 @@ public class SoccerSim {
 
 	}
 
+	System.out.println("There were no collisions!");
+
     return false;
 
   }
@@ -236,6 +244,7 @@ public class SoccerSim {
       } 
 
     }
+    System.out.println("The balls stayed in bounds.");
     return false;
    }
 
@@ -248,6 +257,7 @@ public class SoccerSim {
    	  	}
 
    	  }
+   	  System.out.println("The ball is at rest.");
    	  return false;
    }
 
@@ -262,8 +272,8 @@ public class SoccerSim {
 	  sim.setUpSim(args);
 	  sim.updateSim(); //good
 	  sim.checkCollision(); //good
-	  sim.ballMoving(); //good
-	  System.out.println(sim.outOfBounds()); 
+	  sim.outOfBounds();
+	  sim.ballMoving(); //good 
 
   }
 
