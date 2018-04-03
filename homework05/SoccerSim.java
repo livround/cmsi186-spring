@@ -77,44 +77,44 @@
 
 public class SoccerSim {
 
-	private static Ball[] balls = null;
+   private static Ball[] balls = null;
 
-	private static int ballNumber = 0;
+   private static int ballNumber = 0;
 
-	private Timer stopWatch = null;
-
-
-	private static final double CENTERFIELD_X = 0;
-
-	private static final double CENTERFIELD_Y = 0;
-
-	private static final double OUTOFBOUNDS_X_POS = 50;
-
-	private static final double OUTOFBOUNDS_X_NEG = -50;
-
-	private static final double OUTOFBOUNDS_Y_POS = 70;
-
-	private static final double OUTOFBOUNDS_Y_NEG = -70;
-
-	private static final double DEFAULT_WIDTH = 100;
-
-	private static final double DEFAULT_HEIGHT = 140;
-
-	private static final double POLE_X = 10;
-
-	private static final double POLE_Y = -10;
+   private Timer stopWatch = null;
 
 
+   private static final double CENTERFIELD_X = 0;
 
-	private int ballCount = 0;
-	
-	private double timeSlice = 0;
+   private static final double CENTERFIELD_Y = 0;
 
-	private static final double DEFAULT_TIMESLICE = 1.0;
-	
-	private Ball[] ballArray = null;
-	
-	private Timer soccerTimer = null;
+   private static final double OUTOFBOUNDS_X_POS = 50;
+
+   private static final double OUTOFBOUNDS_X_NEG = -50;
+
+   private static final double OUTOFBOUNDS_Y_POS = 70;
+
+   private static final double OUTOFBOUNDS_Y_NEG = -70;
+
+   private static final double DEFAULT_WIDTH = 100;
+
+   private static final double DEFAULT_HEIGHT = 140;
+
+   private static final double POLE_X = 10;
+
+   private static final double POLE_Y = -10;
+
+
+
+   private int ballCount = 0;
+
+   private double timeSlice = 0;
+
+   private static final double DEFAULT_TIMESLICE = 1.0;
+
+   private Ball[] ballArray = null;
+
+   private Timer soccerTimer = null;
 
 
 
@@ -124,7 +124,7 @@ public class SoccerSim {
 
   public void validateArguments(String args[] ) {
 
-	  if( 0 == args.length ) {
+     if( 0 == args.length ) {
 
          System.out.println( "   Sorry you must enter at least one argument\n" +
 
@@ -134,60 +134,61 @@ public class SoccerSim {
 
       } else {
 
-		  if ((args.length % 4) == 1) {
+        if ((args.length % 4) == 1) {
 
-		  	double timeSlice = Double.parseDouble(args[4]);
+         double timeSlice = Double.parseDouble(args[4]);
 
-			ballNumber = ((args.length - 1) / 4);
+         ballNumber = ((args.length - 1) / 4);
 
-		  }
-  	  }
+        }
+     }
   }
 
   public void setUpSim(String args[]) {
 
-  	ballCount = (int)(Math.floor(args.length / 4));
+   ballCount = (int)(Math.floor(args.length / 4));
 
 
-  	if( args.length % 4 == 0) {
+   if( args.length % 4 == 0) {
 
-  		this.timeSlice = DEFAULT_TIMESLICE;
+      this.timeSlice = DEFAULT_TIMESLICE;
 
-  	} else if( args.length % 4 == 1) {
+   } else if( args.length % 4 == 1) {
 
-  		this.timeSlice = Double.parseDouble(args[args.length - 1]);
+      this.timeSlice = Double.parseDouble(args[args.length - 1]);
 
-  	} else if( (args.length % 4) > 1 ) {
+   } else if( (args.length % 4) > 1 ) {
 
-  		throw new IllegalArgumentException("Wrong number of arguments!");
+      throw new IllegalArgumentException("Wrong number of arguments!");
 
-  	}
+   }
 
-  	this.ballArray = new Ball[this.ballCount];
+   this.ballArray = new Ball[this.ballCount];
 
-  	int j = 0;
+   int j = 0;
 
-  	for (int i=0; i < ballArray.length; i += 4) {
+//   for (int i=0; i < ballArray.length; i += 4) {
+   for (int i=0; i < args.length; i += 4) {
 
-  		ballArray[j] = new Ball (
+      ballArray[j] = new Ball (
 
-			(Double.parseDouble(args[i + 0])),
-			(Double.parseDouble(args[i + 1])),
-			(Double.parseDouble(args[i + 2])),
-			(Double.parseDouble(args[i + 3])) );
+         (Double.parseDouble(args[i + 0])),
+         (Double.parseDouble(args[i + 1])),
+         (Double.parseDouble(args[i + 2])),
+         (Double.parseDouble(args[i + 3])) );
 
-  		j++;
-	}
+      j++;
+   }
   }
 
   public void updateSim() {
-  	
-  	for (int i = 0; i < ballArray.length; i++) {
-  		
-  		ballArray[i].moveBall();
-  		ballArray[i].ballOutOfBounds( DEFAULT_HEIGHT, DEFAULT_WIDTH);
-  		
-  	}
+
+   for (int i = 0; i < ballArray.length; i++) {
+
+      ballArray[i].moveBall();
+      ballArray[i].ballOutOfBounds( DEFAULT_HEIGHT, DEFAULT_WIDTH);
+
+   }
 
   }
 
@@ -196,29 +197,29 @@ public class SoccerSim {
 
     for (int i = 0; i < ballArray.length - 2; i++) {
 
-    	for (int j = i + 1; j < ballArray.length; j++) {
+      for (int j = i + 1; j < ballArray.length; j++) {
 
-    		if ((Math.sqrt(Math.pow(ballArray[i].getXLocation() - ballArray[j].getXLocation(), 2) + Math.pow(ballArray[i].getYLocation() - ballArray[j].getYLocation(), 2))) <= (8.9/12)) {
+         if ((Math.sqrt(Math.pow(ballArray[i].getXLocation() - ballArray[j].getXLocation(), 2) + Math.pow(ballArray[i].getYLocation() - ballArray[j].getYLocation(), 2))) <= (8.9/12)) {
 
-    			return true;
+            return true;
 
-    		}
+         }
 
-    	}
+      }
 
-    } 
+    }
 
-	for (int i = 0; i < ballArray.length; i++) {
+   for (int i = 0; i < ballArray.length; i++) {
 
-		if ((Math.sqrt(Math.pow(ballArray[i].getXLocation() - 10, 2) + Math.pow(ballArray[i].getYLocation() - 10, 2))) <= (4.45/12)) {
+      if ((Math.sqrt(Math.pow(ballArray[i].getXLocation() - 10, 2) + Math.pow(ballArray[i].getYLocation() - 10, 2))) <= (4.45/12)) {
 
-			return true;
+         return true;
 
-		}
+      }
 
-	}
+   }
 
-	System.out.println("There were no collisions!");
+   System.out.println("There were no collisions!");
 
     return false;
 
@@ -241,7 +242,7 @@ public class SoccerSim {
 
         return true;
 
-      } 
+      }
 
     }
     System.out.println("The balls stayed in bounds.");
@@ -249,31 +250,31 @@ public class SoccerSim {
    }
 
   public boolean ballMoving() {
-  	  
-   	  for (int i = 0; i < ballArray.length; i++) {
 
-   	  	if( ballArray[i].stillMoving()) {
-   	  		return true;
-   	  	}
+        for (int i = 0; i < ballArray.length; i++) {
 
-   	  }
-   	  System.out.println("The ball is at rest.");
-   	  return false;
+         if( ballArray[i].stillMoving()) {
+            return true;
+         }
+
+        }
+        System.out.println("The ball is at rest.");
+        return false;
    }
 
 
   public static void main( String args[] ) {
 
-	  System.out.println( "\n   Starting the SoccerSim game!\n\n" );
+     System.out.println( "\n   Starting the SoccerSim game!\n\n" );
 
-	  SoccerSim sim = new SoccerSim();
+     SoccerSim sim = new SoccerSim();
 
-	  sim.validateArguments(args);
-	  sim.setUpSim(args);
-	  sim.updateSim(); //good
-	  sim.checkCollision(); //good
-	  sim.outOfBounds();
-	  sim.ballMoving(); //good 
+     sim.validateArguments(args);
+     sim.setUpSim(args);
+     sim.updateSim(); //good
+     sim.checkCollision(); //good
+     sim.outOfBounds();
+     sim.ballMoving(); //good
 
   }
 
