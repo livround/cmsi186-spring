@@ -36,44 +36,6 @@
 
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
- *  File name     :  SoccerSim.java
-
- *  Purpose       :  The main program for the Soccer class
-
- *  @see
-
- *  @author       :  Olivia Round
-
- *  Date written  :  2018-03-15
-
- *  Description   :  This class provides a bunch of methods which may be useful for the Soccer class
-
- *                   for Homework 5, part 2.
-
- *
-
- *  Notes         :  None right now.  I'll add some as they occur.
-
- *  Warnings      :  None
-
- *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
-
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
- *  Revision Histor
-
- *  ---------------
-
- *            Rev      Date     Modified by:  Reason for change/modification
-
- *           -----  ----------  ------------  -----------------------------------------------------------
-
- *  @version 1.0.0  2018-03-15  Olivia Round  Initial writing and release
-
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 public class SoccerSim {
 
 	private static Ball[] balls = null;
