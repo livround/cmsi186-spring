@@ -36,6 +36,44 @@
 
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ *  File name     :  SoccerSim.java
+
+ *  Purpose       :  The main program for the Soccer class
+
+ *  @see
+
+ *  @author       :  Olivia Round
+
+ *  Date written  :  2018-03-15
+
+ *  Description   :  This class provides a bunch of methods which may be useful for the Soccer class
+
+ *                   for Homework 5, part 2.
+
+ *
+
+ *  Notes         :  None right now.  I'll add some as they occur.
+
+ *  Warnings      :  None
+
+ *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
+
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ *  Revision Histor
+
+ *  ---------------
+
+ *            Rev      Date     Modified by:  Reason for change/modification
+
+ *           -----  ----------  ------------  -----------------------------------------------------------
+
+ *  @version 1.0.0  2018-03-15  Olivia Round  Initial writing and release
+
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 
 public class SoccerSim {
 
@@ -66,6 +104,7 @@ public class SoccerSim {
 
 	private int ballCount = 0;
 	
+	private double timeSlice = 0;
 
 	private static final double DEFAULT_TIMESLICE = 1.0;
 	
@@ -106,27 +145,34 @@ public class SoccerSim {
   	ballCount = (int)(Math.floor(args.length / 4));
 
 
-  	if( args.length != (ballCount * 4)) {
+  	if( args.length % 4 == 0) {
 
-  		throw new IllegalArgumentException();
+  		this.timeSlice = DEFAULT_TIMESLICE;
 
-  	} else if((args.length - 1) != (ballCount *4)) {
+  	} else if( args.length % 4 == 1) {
 
-  		throw new IllegalArgumentException();
+  		this.timeSlice = Double.parseDouble(args[args.length - 1]);
+
+  	} else if( (args.length % 4) > 1 ) {
+
+  		throw new IllegalArgumentException("Wrong number of arguments!");
 
   	}
 
   	this.ballArray = new Ball[this.ballCount];
-	
-	for (int i = 0; i < this.ballArray.length; i++) {
 
-		for (int j = 0; j < this.ballArray.length; j++ ) {
+  	int j = 0;
 
-			this.ballArray[j] = new Ball (Double.parseDouble(args[i + 0]));
-			this.ballArray[j] = new Ball (Double.parseDouble(args[i + 1]));
-			this.ballArray[j] = new Ball (Double.parseDouble(args[i + 2]));
+  	for (int i=0; i < ballArray.length; i += 4) {
 
-		}
+  		balls[j] = new Ball (
+
+			(Double.parseDouble(args[i + 0])),
+			(Double.parseDouble(args[i + 1])),
+			(Double.parseDouble(args[i + 2])),
+			(Double.parseDouble(args[i + 3])) );
+
+  		j++;
 	}
   }
 
@@ -142,17 +188,31 @@ public class SoccerSim {
 
   public boolean checkCollision() {
 
-    for (int i = 0; i < ballArray.length - 1; i++) {
+    for (int i = 0; i < ballArray.length - 2; i++) {
 
-      if ( ((ballArray[i].getXLocation() - POLE_X) <=  (4.45/12)) && ((ballArray[i].getYLocation() - POLE_Y) <= (4.45/12)) ) {
+    	for (int j = i + 1; j < ballArray.length; j++) {
 
-        System.out.println("The ball has hit the pole!");
+    		if ((Math.sqrt(Math.pow(ballArray[i].getXLocation() - ballArray[j].getXLocation(), 2) + Math.pow(ballArray[i].getYLocation() - ballArray[j].getYLocation(), 2))) <= (8.9/12)) {
 
-        return true;
+    			return true;
 
-      }  
+    		}
 
-    }
+    	}
+
+    } 
+
+	for (int i = 0; i < ballArray.length; i++) {
+
+		if ((Math.sqrt(Math.pow(ballArray[i].getXLocation() - 10, 2) + Math.pow(ballArray[i].getYLocation() - 10, 2))) <= (4.45/12)) {
+
+			return true;
+
+		}
+
+	}
+
+    return false;
 
   }
 
@@ -173,13 +233,10 @@ public class SoccerSim {
 
         return true;
 
-      } else {
+      } 
 
-        return false;
-
-      }
     }
-
+    return false;
    }
 
   public boolean ballMoving() {
@@ -199,14 +256,15 @@ public class SoccerSim {
 
 	  System.out.println( "\n   Starting the SoccerSim game!\n\n" );
 
+	  SoccerSim sim = new SoccerSim();
 
-	  Ball b1 = new Ball(0, 0, 0, 0);
-
-	  Ball b2 = new Ball(1, 1, 0, 0);
-
-	  Ball pole = new Ball(10, 10, 0, 0);
-	  
+	  sim.validateArguments(args);
+	  sim.setUpSim(args);
+	  sim.updateSim(); //good
+	  sim.checkCollision(); //good
+	  sim.ballMoving(); //good
+	  System.out.println(sim.outOfBounds()); 
 
   }
-}
 
+}
