@@ -20,26 +20,31 @@ updatePosition       : exists in some forme and works      -  1 point
 isOutOfBounds        : exists in some forme and works      -  1 point
 toString             : exists in some forme and works      -  1 point
 main(tests)          : exists; has at least one test       -  1 point
+
 class Timer          : Class file exists                   -  1 point
 constructor          : exists, initializes class           -  1 point
 tick                 : exists in some forme and works      -  1 point
 toString             : exists in some forme and works      -  1 point
 main(tests)          : exists, has at least one test       -  1 point
+
 class SoccerSim      : Class file exists                   -  1 point
 constructor          : exists, initializes class           -  1 point
 validateArgs         : exists in some forme and works      -  1 point
 report               : exists in some forme and works      -  1 point
 collision detect     : exists in some forme and works      -  1 point
 main                 : exists, runs simulation             -  1 point
-sim param checks     : checks parameters (2 total/8 tests) -  2 points
-test comes to rest   : all balls reach zero velocity       -  1 point
-test collision       : two balls collide stopping sim      -  1 point
-remaining sim tests  : various other tests (3 total)       -  3 points
+sim param checks     : checks parameters (2 total/8 tests) -  5/8 = 1.25 out of 2 points
+   Failed check for negative time slice; got ArrayIndexOutOfBoundsException
+   Failed check for too large time slice; got ArrayIndexOutOfBoundsException
+   Failed check for zero second time slice; got ArrayIndexOutOfBoundsException
+test comes to rest   : all balls reach zero velocity       -  0.5 point
+test collision       : two balls collide stopping sim      -  0.5 point
+remaining sim tests  : various other tests (3 total)       -  1.5 points
 Files in Git         : minimum of Ball/Soccersim           -  2 points
 Coding Style         : alignments, well crafted            -  5 points
 
 
-Total 34 out of 34 = 100% which is an A-plus
+Total 30.75 out of 34 = 90.44% which is an A-minus
 
 Nice work!
 
