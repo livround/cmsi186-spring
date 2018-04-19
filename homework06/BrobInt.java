@@ -38,8 +38,6 @@
 
 import java.util.Arrays;
 
-
-
 public class BrobInt {
 
 
@@ -96,7 +94,7 @@ public class BrobInt {
 
    private String reversed      = "";        // the backwards version of the internal String representation
 
-
+   private boolean negative;
 
   /**
    *  Constructor takes a string and assigns it to the internal storage, checks for a sign character
@@ -107,28 +105,28 @@ public class BrobInt {
 
    public BrobInt( String value ) {
 
-      int i = 0;
-      int length = value.length();
-      int start = length - CHARS_THAT_FIT;
-      int size = (int)(Math.ceil(length / CHARS_THAT_FIT) + 1);
-      intArray = new int[size];
-      //StringBuffer sb = new StringBuffer();
-      System.out.println("value: " + value);
-      System.out.println("length: " + length + " start: " + start);
-      while( length >= CHARS_THAT_FIT ) {
-        //split into the sections of 6
-        intArray[i] = Integer.parseInt(value.substring(start, length));
-        length -= CHARS_THAT_FIT;
-        start -= CHARS_THAT_FIT;
-        i++;
-      }
-      if( length > 0 ) {
-        //handle whatever is left over
-        intArray[i] = Integer.parseInt(value.substring(0, length));
-      }     
-      toArray(intArray);
 
-   }
+
+    if(value.charAt(0) == '-') {
+      negative = true;
+      value = value.substring(1);
+    }
+
+    while (value.charAt(0) == '0' && value.length() > 1)
+      value = value.substring(1);
+
+    internalValue = value;
+
+    int size = value.length();
+    intArray = new int[size];
+
+    int x = 0;
+    for (int i = size - 1; i >= 0; i--) {
+      intArray[i] = value.charAt(x) - 48;
+      x++;
+    }
+
+  }
 
 
 
@@ -167,14 +165,14 @@ public class BrobInt {
 
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-   public BrobInt reverser() {
+   /**public BrobInt reverser() {
 
       String original = "";    
       String reversed = new StringBuilder(original).reverse().toString();
 
       return new BrobInt(reversed); 
 
-   }
+   }*/
 
 
 
@@ -192,7 +190,7 @@ public class BrobInt {
 
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-   public static BrobInt reverser( BrobInt gint ) {
+   /**public static BrobInt reverser( BrobInt gint ) {
 
     System.out.println(gint.toString());
 
@@ -202,7 +200,7 @@ public class BrobInt {
 
      return new BrobInt(reversed);
 
-   }
+   } */
 
 
    public int getLength() {
@@ -214,6 +212,7 @@ public class BrobInt {
    public int[] getArray() {
     return intArray;
    }
+
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -227,90 +226,81 @@ public class BrobInt {
 
    public BrobInt add( BrobInt gint ) {
 
+
     int length1 = gint.getLength();
-    int length2 = intArray.length;
-    int sumArray[];
+    int length2 = this.getLength();
+    int[] array1 = gint.getArray();
+    int sum[];
     int carry = 0;
-    int gintArray[] = gint.getArray();
 
-    if(length1 >= length2) {
-
-      sumArray = new int[length1];
-
-      for (int i = 0; i < sumArray.length; i++) {
-
-        sumArray[i] = gintArray[i] + intArray[i] + carry;
-
-        System.out.println("sumArray: " + sumArray[i]);
-        System.out.println("gintArray: " + gintArray[i]);
-        System.out.println("intArray: " + intArray[i]);
-
-        if (sumArray[i] > 999999) {
-
-        carry = sumArray[i] / 1000000;
-        sumArray[i] = sumArray[i] % 1000000;
-
-        }
-
-      }
-
-      for (int j = length2; j < length1; j++) {
-
-        sumArray[j] = gintArray[j];
-
-      } 
-
-    } else {
-
-      sumArray = new int[length2];
-
-      for (int i = 0; i < sumArray.length; i++) {
-
-          sumArray[i] = gintArray[i] + intArray[i] + carry;
-
-          System.out.println("sumArray: " + sumArray[i]);
-          System.out.println("gintArray: " + gintArray[i]);
-          System.out.println("intArray: " + intArray[i]);
-
-           if (sumArray[i] > 999999) {
-
-            carry = sumArray[i] / 1000000;
-            sumArray[i] = sumArray[i] % 1000000;
-
-           }
-
-           for (int j = length2; j < length1; j++) {
-            
-            sumArray[j] = gintArray[j];
-
-           } 
-
-       } 
-    /**for (int i = 0; i < sumArray.length; i++) {
-
-      sumArray[i] = gintArray[i] + intArray[i] + carry;
-
-      if (sumArray[i] > 9) {
-
-        carry = sumArray[i] / 1000000;
-        sumArray[i] = sumArray[i] % 1000000;
-
-      } */
-
-    } 
-
-    String sum = "";
-
-    for (int i = 0; i < sumArray.length; i++) {
-      String sumString = Integer.toString(sumArray[i]);
-
-      sum += sumString;
-
+    if(!this.isNegative() && gint.isNegative()) {
+      BrobInt tempA = new BrobInt(this.toString());
+      BrobInt tempB = new BrobInt(gint.toString());
+      tempB.makePositive();
+      return tempA.subtract(tempB);
     }
 
-    return new BrobInt(sum);
+    if(this.isNegative() && !gint.isNegative()) {
+      BrobInt tempA = new BrobInt(this.toString());
+      BrobInt tempB = new BrobInt(gint.toString());
+      tempA.makePositive();
+      return tempA.subtract(tempB);
+    }
 
-   }
+
+    if (length1 > length2) {
+      sum = new int[length1 + 1];
+      for (int i = 0; i < length2; i++){
+        sum[i] = array1[i] + intArray[i] + carry;
+        carry = sum[i] / 10;
+        sum[i] = sum[i] % 10;
+      }
+      for (int i = length2; i < length1; i++){
+        sum[i] = array1[i] + carry;
+        carry = sum[i] / 10;
+        sum[i] = sum[i] % 10;
+      }
+      sum[sum.length - 1] = carry;
+    }
+
+    else if (length1 < length2) {
+      sum = new int[length2 + 1];
+      for (int i = 0; i < length1; i++){
+        sum[i] = array1[i] + intArray[i] + carry;
+        carry = sum[i] / 10;
+        sum[i] = sum[i] % 10;
+      }
+      for (int i = length1; i < length2; i++){
+        sum[i] = intArray[i] + carry;
+        carry = sum[i] / 10;
+        sum[i] = sum[i] % 10;
+      }
+      sum[sum.length - 1] = carry;
+    }
+
+    else {
+      sum = new int[length2 + 1];
+      for (int i = 0; i < length1; i++){
+        sum[i] = array1[i] + intArray[i] + carry;
+        carry = sum[i] / 10;
+        sum[i] = sum[i] % 10;
+      }
+      sum[sum.length - 1] = carry;
+    }
+
+    if(this.isNegative() && gint.isNegative()) {
+      String value = "-";
+      for (int i = sum.length - 1; i >= 0; i--)
+        value += sum[i];
+      return new BrobInt(value);
+    }
+
+    String value = "";
+    for (int i = sum.length - 1; i >= 0; i--)
+      value += sum[i];
+    return new BrobInt(value);
+  }
+
 
 
 
@@ -326,18 +316,141 @@ public class BrobInt {
 
    public BrobInt subtract( BrobInt gint ) {
 
+    //test code is only for bytes and not ints
+
     int length1 = gint.getLength();
-    int length2 = intArray.length;
-    int sumArray[];
-    int carry = 0;
-    int gintArray[] = gint.getArray();
+    int length2 = this.getLength();
+    int[] array1 = gint.getArray();
+    int difference[];
 
-    
+    if(!this.isNegative() && gint.isNegative()) {
+      BrobInt tempA = new BrobInt(this.toString());
+      BrobInt tempB = new BrobInt(gint.toString());
+      tempB.makePositive();
+      return tempA.add(tempB);
+    }
 
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+    if(this.isNegative() && !gint.isNegative()) {
+      BrobInt tempA = new BrobInt(this.toString());
+      BrobInt tempB = new BrobInt(gint.toString());
+      tempB.makeNegative();
+      return tempA.add(tempB);
+    }
 
-   }
+    if(this.isNegative() && gint.isNegative()) {
+        BrobInt tempA = new BrobInt(this.toString());
+        BrobInt tempB = new BrobInt(gint.toString());
+        tempA.makePositive();
+        tempB.makePositive();
+        return tempB.subtract(tempA);
+    }
 
+    //System.out.println("this: " + this.isNegative() + "gint: " + gint.isNegative() + "length1 > length2: " + (length1 > length2));
+    if(this.isNegative() && !gint.isNegative() && length1 > length2) {
+      this.makePositive();
+      difference = new int[length1];
+      for(int i = 0; i < length2; i++) {
+        difference[i] = array1[i] - intArray[i];
+        if(difference[i] < 0 ) {
+          array1[i+1]--;
+          difference[i] = (array1[i] + 10) - intArray[i];
+        }
+
+      }
+      for(int i = length2; i < length1; i++) {
+        difference[i] = array1[i];
+         if(difference[i] < 0 ) {
+          array1[i+1]--;
+          difference[i] = (array1[i] + 10);
+        }
+      }
+      String value = "";
+      for (int i = difference.length - 1; i >= 0; i--)
+        value += difference[i];
+      return new BrobInt(value);
+    }
+
+    if(length1 > length2) {
+      difference = new int[length1];
+      for(int i = 0; i < length2; i++) {
+        difference[i] = array1[i] - intArray[i];
+        if(difference[i] < 0 ) {
+          array1[i+1]--;
+          difference[i] = (array1[i] + 10) - intArray[i];
+        }
+
+      }
+      for(int i = length2; i < length1; i++) {
+        difference[i] = array1[i];
+          if(difference[i] < 0 ) {
+            array1[i+1]--;
+            difference[i] = (array1[i] + 10);
+          }
+      }
+      String value = "-";
+      for (int i = difference.length - 1; i >= 0; i--)
+        value += difference[i];
+      return new BrobInt(value);
+    }
+
+    else if (length2 > length1) {
+      difference = new int[length2];
+      for(int i = 0; i < length1; i++) {
+        difference[i] = intArray[i] - array1[i];
+        if(difference[i] < 0 ) {
+          intArray[i+1]--;
+          difference[i] = (intArray[i] + 10) - array1[i];
+        }
+
+      }
+      for(int i = length1; i < length2; i++) {
+        difference[i] = intArray[i];
+        if(difference[i] < 0 ) {
+          intArray[i+1]--;
+          difference[i] = (intArray[i] + 10);
+        }
+      }
+      String value = "";
+      for (int i = difference.length - 1; i >= 0; i--)
+        value += difference[i];
+      return new BrobInt(value);
+    } 
+
+    else {
+      difference = new int[length2];
+      if(gint.compareTo(this) > 0) {
+        for(int i = 0; i < length1; i++) {
+          difference[i] = array1[i] - intArray[i];
+          if(difference[i] < 0 ) {
+            array1[i+1]--;
+            difference[i] = (array1[i] + 10) - intArray[i];
+          }
+        }
+        String value = "-";
+        for (int i = difference.length - 1; i >= 0; i--)
+          value += difference[i];
+        return new BrobInt(value);
+      }
+
+      if(gint.compareTo(this) < 0) {
+        for(int i = 0; i < length1; i++) {
+          difference[i] = intArray[i] - array1[i];
+          if(difference[i] < 0 ) {
+            intArray[i+1]--;
+            difference[i] = (intArray[i] + 10) - array1[i];
+          }
+        }
+
+        String value = "";
+        for (int i = difference.length - 1; i >= 0; i--)
+          value += difference[i];
+        return new BrobInt(value);
+
+      } else {
+        return new BrobInt("0");
+      }
+    }
+  }
 
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -354,9 +467,10 @@ public class BrobInt {
 
    public BrobInt multiply( BrobInt gint ) {
 
+    //put the arrays back in normal order
+    //hal
 
-
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+    throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
 
    }
 
@@ -374,8 +488,64 @@ public class BrobInt {
 
    public BrobInt divide( BrobInt gint ) {
 
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+    int length1 = gint.getLength();
+    int length2 = this.getLength();
+    int[] array1 = new int[length1]; //gint
+    int[] array2 = new int[length2]; //this
 
+    if(this.compareTo(gint) == -1) {
+      return new BrobInt("0");
+    } 
+
+    if(this.compareTo(gint) == 0) {
+      return new BrobInt("1");
+    }
+
+
+    int[] quotient = new int[length2];
+    String d3 = ""; 
+    int count = 0;
+    int index = 0;
+
+    try {
+      for(int i = 0; i < length2; i++) {
+        d3 += internalValue.charAt(i);
+        BrobInt temp = new BrobInt(d3);
+        count = 0;
+    
+        if (this.compareTo(temp) <= 0) {
+          while (gint.compareTo(temp) <= 0) {
+            temp = temp.subtract(gint);
+            count++;
+            index = i;
+          }
+        }
+
+        else
+
+          count = 0;
+
+        d3 = temp.toString();
+        
+        if(d3.charAt(0) == '0')
+          d3 = d3.substring(1);
+        quotient[i] = count;
+      }
+    }
+
+    catch(IndexOutOfBoundsException e) {
+      if(d3.charAt(0) == '0')
+        d3 = d3.substring(1);
+      quotient[index] = count;
+    };
+
+
+    String quotientString = "";
+    for(int y : quotient) {
+      quotientString += y;
+    }
+
+    return new BrobInt(quotientString);
    }
 
 
@@ -410,15 +580,79 @@ public class BrobInt {
 
    *        THAT was easy.....
 
+      NOTE: this compareTo method works for my code because we only call it when the two BrobInts are the same length. 
+
+            further, compareTo is not called when the values are integer.
+
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
    public int compareTo( BrobInt gint ) {
 
-      return (internalValue.compareTo( gint.toString() )); //done
+    //-1 if gint is bigger and 1 if this is bigger, 0 if they are the same
+
+      if(this.isNegative() && !gint.isNegative()) 
+        return -1;
+      else if(!this.isNegative() && gint.isNegative()) 
+        return 1;
+
+      if(this.isNegative() && gint.isNegative() && this.getLength() > gint.getLength()) 
+        return -1;
+      if(this.isNegative() && gint.isNegative() && this.getLength() < gint.getLength())
+        return 1;
+
+      if(!this.isNegative() && !gint.isNegative() && this.getLength() > gint.getLength())
+        return 1;
+      if(!this.isNegative() && !gint.isNegative() && this.getLength() < gint.getLength())
+        return -1;
+
+      if(this.isNegative() && gint.isNegative() && this.getLength() == gint.getLength()) {
+        for (int i = 0; i < gint.getLength(); i++) {
+          if(this.toString().charAt(i) > gint.toString().charAt(i)) {
+            return -1;
+          } else if(this.toString().charAt(i) < gint.toString().charAt(i)) {
+            return 1;
+          }
+        }
+      }
+
+
+      if(!this.isNegative() && !gint.isNegative() && this.getLength() == gint.getLength()) {
+          for (int i = 0; i < gint.getLength(); i++) {
+            if(this.toString().charAt(i) > gint.toString().charAt(i)) {
+              return 1;
+            } else if(this.toString().charAt(i) < gint.toString().charAt(i)) {
+              return -1;
+            }
+          }
+      }
+  
+      return 0;
 
    }
 
+   public boolean isNegative() {
 
+    return negative;
+
+   }
+
+   public void isPositive() {
+
+    negative = false;
+
+   }
+
+   public void makePositive() {
+
+    negative = false;
+
+   }
+
+   public void makeNegative() {
+
+    negative = true;
+
+   }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -484,36 +718,14 @@ public class BrobInt {
 
    public String toString() {
 
-      String output = "";
+    if(internalValue.charAt(0) == '0' && internalValue.length() > 1)
+      internalValue = internalValue.substring(1);
 
-      for( int i = intArray.length - 1; i >= 0; i-- ) {
+    if(this.isNegative()) 
+      return "-" + internalValue;
 
-         String blah = new String(Integer.valueOf(intArray[i]).toString());
-
-         if (blah.length() < 6) {
-
-            while (blah.length() < 6) {
-
-                blah = "0" + blah;
-
-            }
-            System.out.println("blah: " + blah);
-            output += blah;
-         } else {
-         
-         output = output.concat( Integer.toString( intArray[i] ) );
-
-         }
-
-      }
-
-      while (output.charAt(0) == '0' && output.length() > 1) {
-        output = output.substring(1, output.length());
-      }
-      return output;
-    //parse out the leading 0's
-
-   }
+    return internalValue;
+   } 
 
 
 
