@@ -31,7 +31,6 @@
 
  *  1.0.0  2018-04-22  Olivia Round  Initial release.
 
-
  *
 
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -71,17 +70,16 @@ public class DynamicChangeMaker {
 		if ( targetCents <= 0 ) {
 
 			throw new IllegalArgumentException ( "BAD DATA" );
-			
+
 		}
-		
-		
+
 		for( int i = 0; i < denoms.length; i++ ) {
 			for ( int j = i + 1; j < denoms.length; j++ ) {
 
 				if( denoms[i] == denoms[j]) {
 
 					throw new IllegalArgumentException ( "BAD DATA" );
-					
+
 				}
 
 			}
@@ -103,91 +101,62 @@ public class DynamicChangeMaker {
 
             } else {
 
-               if( i == 0 ) {
-
-               	  if ( denoms[i] > j) {
-
-               	  	theTable[i][j] = Tuple.IMPOSSIBLE;
-
-               	  } else {
+            	if( j >= denoms[i] ) {
 
                	  	theTable[i][j] = new Tuple(denoms.length);
                	  	theTable[i][j].setElement(i, 1);
 
-               	  	if ( !(theTable[i][j - denoms[i]]).isImpossible() ) {
-
-               	  		theTable[i][j] = theTable[i][j].add(theTable[i][j - denoms[i]]);
-
-               	  	} else {
+               	  	if ( (theTable[i][j - denoms[i]]).isImpossible() ) {
 
                	  		theTable[i][j] = Tuple.IMPOSSIBLE;
 
-               	  	}
+               	  	} else if (!theTable[i][j - denoms[i]].isImpossible()) {
 
-               	  }
-
-               } else {
-
-               	  if ( denoms[i] > j) {
-
-               	  	theTable[i][j] = Tuple.IMPOSSIBLE;
-
-           	  		if( theTable[i][j].isImpossible() ) {
-
-           	  			if( !theTable[i - 1][j].isImpossible() ) {
-
-           	  				theTable[i][j] = theTable[i - 1][j];
-
-           	  			}
+               	  		theTable[i][j] = theTable[i][j].add(theTable[i][j - denoms[i]]);
 
                	  	}
 
                	  } else {
 
-               	  	theTable[i][j] = new Tuple(denoms.length);
-               	  	theTable[i][j].setElement(i, 1);
+               	  	theTable[i][j] = Tuple.IMPOSSIBLE;
 
-               	  	if ( !theTable[i][j - denoms[i]].isImpossible() ) {
+               	  }
 
-               	  		theTable[i][j] = theTable[i][j].add(theTable[i][j - denoms[i]]);
+               } 
 
-               	  	} else if ( !theTable[i-1][j].isImpossible()) {
+               if ( i != 0 ) {
 
-               	  		if (!theTable[i][j].isImpossible()) {
+               	  if (!theTable[i][j].isImpossible()) {
 
-	               	  		theTable[i][j] = theTable[i - 1][j];
+               	  	if( theTable[i - 1][j].isImpossible()) {
 
-	               	  	}
+               	  	} else if ( !theTable[i - 1][j].isImpossible()) {
 
-               	  	}
+               	  		if( theTable[i - 1][j].total() < theTable[i][j].total()) {
 
-               	  	if ( !theTable[i-1][j].isImpossible()) {
+               	  			theTable[i][j] = theTable[i-1][j];
 
-               	  	  if ( !theTable[i][j].isImpossible() ) {
-
-               	  		if ( theTable[i - 1][j].total() < theTable[i][j].total() ) {
-
-               	  			theTable[i][j] = theTable[i][j].add(theTable[i - 1][j]);
+               	  		} else {
 
                	  		}
 
-               	  	  } else {
+               	  	}
 
-               	  	  	theTable[i][j] = theTable[i-1][j];
+               	  } else {
 
-               	  	  }
+               	  	if ( !theTable[i - 1][j].isImpossible()) {
+
+               	  		theTable[i][j] = theTable[i - 1][j];
 
                	  	}
 
                	  }
 
-               }
+			   }
 
-			 }
+		    }
 
 		}
-
-	}
 
 	return theTable[rowCount - 1][columnCount - 1];
 
