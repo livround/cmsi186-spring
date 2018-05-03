@@ -40,30 +40,148 @@ import java.util.*;
 
 public class DynamicChangeMaker {
 
-//check validity in theTable or check it beforehand?
-	Tuple denoms = Tuple.IMPOSSIBLE;
 
-	public 
+	/**
+   * Method to output optimum way of making change for given target amount
+   * @param  int array of denominations and integer containing target amount
+   * @return a tuple of the optimal combination of denominations
+   * @throws IllegalArgumentException if the arguments contain bad data
+   */
 
-	public Tuple makeChangeWithDynamicProgramming(String[] denominations, String targetCents) {
+	public static Tuple makeChangeWithDynamicProgramming(int[] denoms, int targetCents) {
 
-		int rows = denominations.length;
-		int columns = Integer.parseInt(targetCents + 1);
+		int rowCount = denoms.length;
+		int columnCount = targetCents + 1;
 
-		Tuple[][] theTable = new Tuple[rows][columns];
+		Tuple[][] theTable = new Tuple[rowCount][columnCount];
 
-//when to use t[i][j-denoms[i]]
-		for(int i = 0; i < rows; i ++) {
-			for(int j = 0; j < columns; j++) {
-				//if denoms[i] > columns[i] than = IMPOSSIBLE
-			}
+		//check no zeros or negatives
+
+		for( int i = 0; i < rowCount; i++ ) {
+
+			if (denoms[i] <= 0 ) {
+
+				throw new IllegalArgumentException ( "BAD DATA" );
+
+			} 
+
+		} 
+
+		if ( targetCents <= 0 ) {
+
+			throw new IllegalArgumentException ( "BAD DATA" );
+			
 		}
 
-		new Tuple optimalChange;
+		//algorithm
 
-		return optimalChange;
+      	for( int i = 0; i < rowCount; i++ ) {
+
+         for( int j = 0; j < columnCount; j++ ) {
+
+           // Special case for column zero for all rows
+
+            if( j == 0 ) {
+            	
+            	theTable[i][j] = new Tuple(denoms.length);
+
+           // Otherwise, this is NOT column zero
+
+            } else {
+
+               if( i == 0 ) {
+
+               	  if ( denoms[i] > j) {
+
+               	  	theTable[i][j] = Tuple.IMPOSSIBLE;
+
+               	  } else {
+
+               	  	theTable[i][j] = new Tuple(denoms.length);
+               	  	theTable[i][j].setElement(i, 1);
+
+               	  	if ( !(theTable[i][j - denoms[i]]).isImpossible() ) {
+
+               	  		theTable[i][j] = theTable[i][j].add(theTable[i][j - denoms[i]]);
+
+               	  	} else {
+
+               	  		theTable[i][j] = Tuple.IMPOSSIBLE;
+
+               	  	}
+
+               	  }
+
+               } else {
+
+               	  if ( denoms[i] > j) {
+
+               	  	theTable[i][j] = Tuple.IMPOSSIBLE;
+
+           	  		if( theTable[i][j].isImpossible() ) {
+
+           	  			if( !theTable[i - 1][j].isImpossible() ) {
+
+           	  				theTable[i][j] = theTable[i - 1][j];
+
+           	  			}
+
+               	  	}
+
+               	  } else {
+
+               	  	theTable[i][j] = new Tuple(denoms.length);
+               	  	theTable[i][j].setElement(i, 1);
+
+               	  	if ( !theTable[i][j - denoms[i]].isImpossible() ) {
+
+               	  		theTable[i][j] = theTable[i][j].add(theTable[i][j - denoms[i]]);
+
+               	  	} else if ( !theTable[i-1][j].isImpossible()) {
+
+               	  		if (!theTable[i][j].isImpossible()) {
+
+	               	  		theTable[i][j] = theTable[i - 1][j];
+
+	               	  	}
+
+               	  	}
+
+               	  	if ( !theTable[i-1][j].isImpossible()) {
+
+               	  	  if ( !theTable[i][j].isImpossible() ) {
+
+               	  		if ( theTable[i - 1][j].total() < theTable[i][j].total() ) {
+
+               	  			theTable[i][j] = theTable[i][j].add(theTable[i - 1][j]);
+
+               	  		}
+
+               	  	  } else {
+
+               	  	  	theTable[i][j] = theTable[i-1][j];
+
+               	  	  }
+
+               	  	}
+
+               	  }
+
+               }
+
+			 }
+
+		}
 
 	}
+
+	return theTable[rowCount - 1][columnCount - 1];
+
+}
+
+
+
+
 
 	public static void main(String[] args) {
 
