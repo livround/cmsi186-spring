@@ -31,6 +31,7 @@
 
  *  1.0.0  2018-04-22  Olivia Round  Initial release.
 
+
  *
 
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -55,7 +56,7 @@ public class DynamicChangeMaker {
 
 		Tuple[][] theTable = new Tuple[rowCount][columnCount];
 
-		//check no zeros or negatives
+		//check no zeros or negatives or repeats
 
 		for( int i = 0; i < rowCount; i++ ) {
 
@@ -71,6 +72,19 @@ public class DynamicChangeMaker {
 
 			throw new IllegalArgumentException ( "BAD DATA" );
 			
+		}
+		
+		
+		for( int i = 0; i < denoms.length; i++ ) {
+			for ( int j = i + 1; j < denoms.length; j++ ) {
+
+				if( denoms[i] == denoms[j]) {
+
+					throw new IllegalArgumentException ( "BAD DATA" );
+					
+				}
+
+			}
 		}
 
 		//algorithm
